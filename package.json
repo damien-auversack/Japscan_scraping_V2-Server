@@ -1,0 +1,26 @@
+{
+    "name": "node-example",
+    "version": "1.0.0",
+    "description": "This example is so cool.",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "keywords": [
+        "example",
+        "heroku"
+    ],
+    "engines": {
+        "node": "14.17.3"
+    },
+    "author": "jane-doe",
+    "license": "MIT",
+    "dependencies": {
+        "cheerio": "^1.0.0-rc.10",
+        "fs": "^0.0.1-security",
+        "http": "^0.0.1-security",
+        "request": "^2.88.2",
+        "url": "^0.11.0"
+    }
+}
