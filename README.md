@@ -1,4 +1,4 @@
-# Japscan_scraping_V2-Server
+# Japscan_scraping_V2-Server [FR]
 
 Projet personnel utilisant les bibliothèques : cheerio, request et Http afin de réaliser le scraping du site internet Japscan. 
 
