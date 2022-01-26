@@ -23,4 +23,6 @@ Repository Web-App : https://github.com/damien-auversack/Japscan_scraping_V2-Web
 
 Repository Server : https://github.com/damien-auversack/Japscan_scraping_V2-Server
 
-![image](https://github.com/damien-auversack/Japscan_scraping_V2-Server/blob/main/presentation_pictures/picture_01.jpg)
+## Images de présentation :
+
+<img src="https://github.com/damien-auversack/Japscan_scraping_V2-Server/blob/main/presentation_pictures/picture_01.jpg" width="250px">
