@@ -22,3 +22,5 @@ On passe donc d'une simple liste de noms à une liste de cartes contenant nom, i
 Repository Web-App : https://github.com/damien-auversack/Japscan_scraping_V2-WebApp
 
 Repository Server : https://github.com/damien-auversack/Japscan_scraping_V2-Server
+
+![alt text](https://github.com/damien-auversack/Japscan_scraping_V2-Server/blob/main/presentation_pictures/picture_01.jpg)
