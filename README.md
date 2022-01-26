@@ -1,4 +1,4 @@
-# Japscan_scraping_V2-Server [FR] | Projet personnel
+# Japscan_scraping_V2-Server | Projet personnel | [FR]
 ## Informations
 
 Ce repository est la partie Serveur du projet.
