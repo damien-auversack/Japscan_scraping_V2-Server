@@ -25,5 +25,5 @@ Repository Server : https://github.com/damien-auversack/Japscan_scraping_V2-Serv
 
 ## Images de présentation :
 <div>
-<img align=top src="https://github.com/damien-auversack/Japscan_scraping_V2-Server/blob/main/presentation_pictures/picture_01.jpg" width="250px"> <img align=top src="https://github.com/damien-auversack/Japscan_scraping_V2-Server/blob/main/presentation_pictures/picture_02.jpg" width="700px">
+<img align=top src="https://github.com/damien-auversack/Japscan_scraping_V2-Server/blob/main/presentation_pictures/picture_01.jpg" width="250px"> <img align=top src="https://github.com/damien-auversack/Japscan_scraping_V2-Server/blob/main/presentation_pictures/picture_02.jpg" width="640px">
 </div>
