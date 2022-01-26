@@ -13,7 +13,7 @@ Ce projet a pour but de scraper le site internet Japscan* afin d'afficher les de
 
 On passe donc d'une simple liste de noms à une liste de cartes contenant nom, image et synopsis du manga.
 
-*Le site Japscan propose à la lecture des mangas sous forme de scan en ligne.
+*Japscan : site proposant à la lecture des mangas sous forme de scan en ligne.
 
 ## Liens du projet :
 
