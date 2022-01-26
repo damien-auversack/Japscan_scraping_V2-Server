@@ -18,9 +18,10 @@ Technologies : HTML, CSS, JS, NodeJs.
 
 Accessible via : https://damien-auversack.github.io/Japscan_scraping_V2-WebApp/
 
-## Lien du projet :
+## Liens du projet :
 
 ### Web-Application : https://damien-auversack.github.io/Japscan_scraping_V2-WebApp/
 
 Repository Web-App : https://github.com/damien-auversack/Japscan_scraping_V2-WebApp
+
 Repository Server : https://github.com/damien-auversack/Japscan_scraping_V2-Server
