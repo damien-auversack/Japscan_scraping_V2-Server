@@ -9,11 +9,11 @@ Bibliothèques : cheerio, request et Http.
 
 ## Description
 
-Ce projet a pour but de scraper le site internet Japscan afin d'afficher les derniers scans mis en ligne avec une interface plus agréable. 
+Ce projet a pour but de scraper le site internet Japscan* afin d'afficher les derniers scans mis en ligne avec une interface plus agréable. 
 
 On passe donc d'une simple liste de noms à une liste de cartes contenant nom, image et synopsis du manga.
 
-Le site Japscan propose à la lecture des mangas sous forme de scan en ligne.
+*Le site Japscan propose à la lecture des mangas sous forme de scan en ligne.
 
 ## Liens du projet :
 
