@@ -4,7 +4,7 @@ const request = require('request');
 const cheerio = require('cheerio');
 
 // Infos
-const nomSite = 'https://www.japscan.ws';
+const nomSite = 'https://www.japscan.me';
 let allMangas = false;
 
 const port = process.env.PORT || 5000;
