@@ -63,6 +63,7 @@ const reqAddInfos = async (arrayOfMangas) => {
             arrayOfMangas[i].synopsis = synopsisMangaTmp;
             let urlMangaTmp = nomSite + $(CSS_SELECTOR_urlImage).attr('src');
             arrayOfMangas[i].urlImage = urlMangaTmp;
+            console.log(arrayOfMangas[i].urlImage)
           }
         })
     );
