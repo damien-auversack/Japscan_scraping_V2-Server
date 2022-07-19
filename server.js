@@ -81,8 +81,7 @@ let server = http.createServer(async (request, response) => {
   
   const scrapResultInfos = await reqAddInfos(scrapResult);
 
-  response.setHeader('Access-Control-Allow-Origin', 'https://damien-auversack.github.io');
-  response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  response.setHeader('Access-Control-Allow-Origin', 'https://damien-auversack.github.io/Japscan_scraping_V2-WebApp');
   response.writeHead(200, { "Content-Type": "text/plain" });
 
   response.end(JSON.stringify(scrapResultInfos));
