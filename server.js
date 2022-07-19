@@ -70,49 +70,23 @@ const reqAddInfos = async (arrayOfMangas) => {
 };
 
 /* Creating server */
-// let server = http.createServer(async (request, response) => {
-  
-  
-// });
-
-// server.listen(port);
-
-
-const express = require('express');
-const cors = require('cors');
-
-const app = express();
-app.use(cors({
-  origin: '*'
-}));
-app.get('/', (req, res) => {
-
+let server = http.createServer(async (request, response) => {
   arrayOfMangas=[];
 
-  const urlObjects = url.parse(request.url, true).query || "";
+  const urlObjects = url.parse(request.url, true).query;
   let allMangas = (urlObjects.isAllMangas == "true");
+  
   
   const scrapResult = await scrap(allMangas);
   
   const scrapResultInfos = await reqAddInfos(scrapResult);
 
-  // response.setHeader('Access-Control-Allow-Origin', '*');
-  // response.writeHead(200, { "Content-Type": "text/plain" });
+  response.setHeader('Access-Control-Allow-Origin', 'https://damien-auversack.github.io');
+  response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  response.writeHead(200, { "Content-Type": "text/plain" });
 
-  // response.end(JSON.stringify(scrapResultInfos));
+  response.end(JSON.stringify(scrapResultInfos));
   
-  res.json(scrapResultInfos);
-
 });
 
-// app.get('/:name', (req, res) => {
-//     let name = req.params.name;
-
-//     res.json({
-//         message: `Hello ${name}`
-//     });
-// });
-
-app.listen(2020, () => {
-    console.log('server is listening on port 2020');
-});
+server.listen(port);
