@@ -70,26 +70,47 @@ const reqAddInfos = async (arrayOfMangas) => {
 };
 
 /* Creating server */
-let server = http.createServer(async (request, response) => {
+// let server = http.createServer(async (request, response) => {
+  
+  
+// });
+
+// server.listen(port);
+
+
+const express = require('express');
+const cors = require('cors');
+
+const app = express();
+
+app.get('/', (req, res) => {
+
   arrayOfMangas=[];
 
   const urlObjects = url.parse(request.url, true).query || "";
   let allMangas = (urlObjects.isAllMangas == "true");
   
-  
   const scrapResult = await scrap(allMangas);
   
   const scrapResultInfos = await reqAddInfos(scrapResult);
 
-  response.setHeader('Access-Control-Allow-Origin', '*');
-  response.writeHead(200, { "Content-Type": "text/plain" });
+  // response.setHeader('Access-Control-Allow-Origin', '*');
+  // response.writeHead(200, { "Content-Type": "text/plain" });
 
-  // response.end(JSON.stringify(scrapResultInfos));
-
-  setTimeout(()=>{
-    response.end(JSON.stringify(scrapResultInfos));
-  }, 5000);
+  response.end(JSON.stringify(scrapResultInfos));
   
+  res.json(scrapResultInfos);
+
 });
 
-server.listen(port);
+// app.get('/:name', (req, res) => {
+//     let name = req.params.name;
+
+//     res.json({
+//         message: `Hello ${name}`
+//     });
+// });
+
+app.listen(2020, () => {
+    console.log('server is listening on port 2020');
+});
