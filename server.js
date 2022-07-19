@@ -73,7 +73,7 @@ const reqAddInfos = async (arrayOfMangas) => {
 let server = http.createServer(async (request, response) => {
   arrayOfMangas=[];
 
-  const urlObjects = url.parse(request.url, true).query;
+  const urlObjects = url.parse(request.url, true).query || "";
   let allMangas = (urlObjects.isAllMangas == "true");
   
   
@@ -81,7 +81,7 @@ let server = http.createServer(async (request, response) => {
   
   const scrapResultInfos = await reqAddInfos(scrapResult);
 
-  response.setHeader('Access-Control-Allow-Origin', 'https://damien-auversack.github.io/');
+  response.setHeader('Access-Control-Allow-Origin', 'https://damien-auversack.github.io');
   response.writeHead(200, { "Content-Type": "text/plain" });
 
   response.end(JSON.stringify(scrapResultInfos));
