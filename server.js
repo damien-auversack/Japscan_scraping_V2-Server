@@ -84,7 +84,11 @@ let server = http.createServer(async (request, response) => {
   response.setHeader('Access-Control-Allow-Origin', '*');
   response.writeHead(200, { "Content-Type": "text/plain" });
 
-  response.end(JSON.stringify(scrapResultInfos));
+  // response.end(JSON.stringify(scrapResultInfos));
+
+  setTimeout(()=>{
+    response.end(JSON.stringify(scrapResultInfos));
+  }, 5000);
   
 });
 
