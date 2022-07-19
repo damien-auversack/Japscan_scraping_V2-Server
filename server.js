@@ -80,7 +80,7 @@ let server = http.createServer(async (request, response) => {
   
   const scrapResultInfos = await reqAddInfos(scrapResult);
 
-  response.setHeader('Access-Control-Allow-Origin', '*');
+  response.setHeader('Access-Control-Allow-Origin', 'https://damien-auversack.github.io');
   response.writeHead(200, { "Content-Type": "text/plain" });
 
   response.end(JSON.stringify(scrapResultInfos));
