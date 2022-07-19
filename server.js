@@ -79,8 +79,8 @@ let server = http.createServer(async (request, response) => {
 
   arrayOfMangas=[];
 
-  const urlObjects = url.parse(request.url, true).query;
-  let allMangas = (urlObjects.isAllMangas == "true");
+  // const urlObjects = url.parse(request.url, true).query;
+  let allMangas = false;
   
   
   const scrapResult = await scrap(allMangas);
