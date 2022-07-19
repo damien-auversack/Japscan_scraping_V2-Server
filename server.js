@@ -82,9 +82,7 @@ let server = http.createServer(async (request, response) => {
   const scrapResultInfos = await reqAddInfos(scrapResult);
 
   response.setHeader('Access-Control-Allow-Origin', 'https://damien-auversack.github.io');
-  response.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
-  response.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  response.header('Access-Control-Allow-Credentials', true);
+  response.setHeader("Access-Control-Allow-Headers", "Content-Type");
   response.writeHead(200, { "Content-Type": "text/plain" });
 
   response.end(JSON.stringify(scrapResultInfos));
