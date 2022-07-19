@@ -82,7 +82,9 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-
+app.use(cors({
+  origin: '*'
+}));
 app.get('/', (req, res) => {
 
   arrayOfMangas=[];
@@ -97,7 +99,7 @@ app.get('/', (req, res) => {
   // response.setHeader('Access-Control-Allow-Origin', '*');
   // response.writeHead(200, { "Content-Type": "text/plain" });
 
-  response.end(JSON.stringify(scrapResultInfos));
+  // response.end(JSON.stringify(scrapResultInfos));
   
   res.json(scrapResultInfos);
 
