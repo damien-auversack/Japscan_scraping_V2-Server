@@ -73,7 +73,7 @@ const reqAddInfos = async (arrayOfMangas) => {
 let server = http.createServer(async (request, response) => {
 
   response.setHeader('Access-Control-Allow-Origin', 'https://damien-auversack.github.io');
-  response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  // response.setHeader("Access-Control-Allow-Headers", "Content-Type");
   response.writeHead(200, { "Content-Type": "text/plain" });
 
   arrayOfMangas=[];
