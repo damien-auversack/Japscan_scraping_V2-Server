@@ -1,111 +1,89 @@
 // Imports
 const http = require('http');
-const request = require('request');
 const cheerio = require('cheerio');
+const axios = require('axios');
+const url = require('url');
 
 // Infos
 const nomSite = 'https://www.japscan.me';
-let allMangas = false;
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
+// const port = 5001;
 
 // CSS Selector
 const CSS_SELECTOR_allMangas = 'div#chapters div.tab-pane.container h3.text-truncate a.text-dark';
 const CSS_SELECTOR_firstPage = 'div#chapters div.tab-pane.container.active h3.text-truncate a.text-dark';
 
-const CSS_SELECTOR_NomUrlManga = (allMangas) ? CSS_SELECTOR_allMangas : CSS_SELECTOR_firstPage;
 const CSS_SELECTOR_Synopsis = 'div#main div.card div.rounded-0 p.list-group-item';
 const CSS_SELECTOR_urlImage = 'div#main div.card div.rounded-0 div.d-flex img';
-
-// Class
-class Manga {
-  constructor() {
-    this.titre = "";
-    this.synopsis = "";
-    this.urlImage = "";
-    this.urlJapscan = ""
-  }
-  setTitre(titre) {
-    this.titre = titre;
-  }
-  setSynopsis(synopsis) {
-    this.synopsis = synopsis;
-  }
-  setUrlImage(urlImage) {
-    this.urlImage = urlImage;
-  }
-  setUrlJapscan(urlJapscan) {
-    this.urlJapscan = urlJapscan;
-  }
-}
 
 // Begin
 
 let arrayOfMangas=[];
-let manga = new Manga();
+
+const scrap = (allMangas) => {
+  
+  let scrapResult = new Promise( (resolve) => {
+
+  axios.get(nomSite)
+    .then(function (response) {
+
+      let CSS_SELECTOR_NomUrlManga = (allMangas) ? CSS_SELECTOR_allMangas : CSS_SELECTOR_firstPage;
+
+      // handle success
+      let $ = cheerio.load(response.data);
+      
+      let objMangaSelect = $(CSS_SELECTOR_NomUrlManga);
+
+      objMangaSelect.each( (index, element) => {
+        let titreManga = $(element).text();
+        titreManga = titreManga.split('.').join(' ');
+        titreManga = titreManga.trim();
+        let urlJapscanTmp = nomSite + $(element).attr('href');
+        arrayOfMangas.push({titre:titreManga,urlJapscan:urlJapscanTmp});
+      });         
+      resolve(arrayOfMangas);
+    });
+  });
+  return scrapResult;
+};
 
 // Scraping
-function scrap() {
-  return new Promise(resolve => {
-      request(nomSite, function (error, response, html) {
-          if (!error && response.statusCode == 200) {
-              let $ = cheerio.load(html);
-              let objMangaSelect = $(CSS_SELECTOR_NomUrlManga);
-
-              objMangaSelect.each(function (index, element) {
-                  let titreManga = $(element).text();
-                  titreManga = titreManga.split('.').join(' ');
-                  titreManga = titreManga.trim();
-                  let urlJapscan = nomSite + $(element).attr('href');
-
-                  let manga = new Manga();
-                  manga.setTitre(titreManga);
-                  manga.setUrlJapscan(urlJapscan);
-
-                  arrayOfMangas.push(manga);
-
-              });                             
-              resolve(arrayOfMangas);
-          }
-      });
-  });
-}
-
 // add Synopsis and url image to Manga object
-function reqAddInfos(arrayOfMangas) {
-  return new Promise(resolve => {
-    for (let i = 0; i < arrayOfMangas.length; i++) {
-      
-        request(arrayOfMangas[i].urlJapscan, function (error2, response2, html2) {
-          if (!error2 && response2.statusCode == 200) {
-            
-            let $ = cheerio.load(html2);	
+const reqAddInfos = async (arrayOfMangas) => {
 
+    let allUrl = arrayOfMangas.map((e)=>e.urlJapscan);
+    let reqAddInfosResult = await Promise.all(
+      allUrl.map( (endpoint) => axios.get(endpoint) )).then(
+        axios.spread((...allData) => {
+          
+          for (let i = 0; i < allData.length; i++) {          
+            let $ = cheerio.load(allData[i].data);	
             let synopsisMangaTmp = $(CSS_SELECTOR_Synopsis).text();
-            arrayOfMangas[i].setSynopsis(synopsisMangaTmp);
-
+            arrayOfMangas[i].synopsis = synopsisMangaTmp;
             let urlMangaTmp = nomSite + $(CSS_SELECTOR_urlImage).attr('src');
-            arrayOfMangas[i].setUrlImage(urlMangaTmp);
-            if(i == arrayOfMangas.length-1) {
-              return true; 
-            }
+            arrayOfMangas[i].urlImage = urlMangaTmp;
           }
-        });       
-    }
-    resolve(arrayOfMangas);
-  });
-}
+        })
+    );
+    return arrayOfMangas;
+};
 
 /* Creating server */
-let server = http.createServer(async function (request, response) {
+let server = http.createServer(async (request, response) => {
   arrayOfMangas=[];
-  const scrapResult = await scrap();
+
+  const urlObjects = url.parse(request.url, true).query;
+  let allMangas = (urlObjects.isAllMangas == "true");
+  
+  const scrapResult = await scrap(allMangas);
+  
   const scrapResultInfos = await reqAddInfos(scrapResult);
+
   response.setHeader('Access-Control-Allow-Origin', '*');
   response.writeHead(200, { "Content-Type": "text/plain" });
-  setTimeout(()=>{
-    response.end(JSON.stringify(scrapResultInfos));
-  }, 5000);
+
+  response.end(JSON.stringify(scrapResultInfos));
   
 });
 

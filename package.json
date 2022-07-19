@@ -17,9 +17,11 @@
     "author": "jane-doe",
     "license": "MIT",
     "dependencies": {
+        "axios": "^0.27.2",
         "cheerio": "^1.0.0-rc.10",
         "fs": "^0.0.1-security",
         "http": "^0.0.1-security",
+        "puppeteer": "^15.4.0",
         "request": "^2.88.2",
         "url": "^0.11.0"
     }
