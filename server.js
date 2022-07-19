@@ -84,7 +84,7 @@ let server = http.createServer(async (request, response) => {
   
   const scrapResult = await scrap(allMangas);
   
-  const scrapResultInfos = await reqAddInfos(scrapResult);
+  // const scrapResultInfos = await reqAddInfos(scrapResult);
   
   response.end(JSON.stringify(scrapResultInfos));
   
