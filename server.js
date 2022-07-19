@@ -76,11 +76,13 @@ let server = http.createServer(async (request, response) => {
   const urlObjects = url.parse(request.url, true).query;
   let allMangas = (urlObjects.isAllMangas == "true");
   
+  
   const scrapResult = await scrap(allMangas);
   
   const scrapResultInfos = await reqAddInfos(scrapResult);
 
   response.setHeader('Access-Control-Allow-Origin', 'https://damien-auversack.github.io');
+  response.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
   response.writeHead(200, { "Content-Type": "text/plain" });
 
   response.end(JSON.stringify(scrapResultInfos));
