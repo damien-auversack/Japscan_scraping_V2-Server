@@ -86,7 +86,7 @@ let server = http.createServer(async (request, response) => {
   
   // const scrapResultInfos = await reqAddInfos(scrapResult);
   
-  response.end(JSON.stringify(scrapResultInfos));
+  response.end(JSON.stringify(scrapResult));
   
 });
 
