@@ -7,8 +7,8 @@ const url = require('url');
 // Infos
 const nomSite = 'https://www.japscan.me';
 
-const port = process.env.PORT || 5001;
-// const port = 5001;
+// const port = process.env.PORT || 5001;
+const port = 5001;
 
 // CSS Selector
 const CSS_SELECTOR_allMangas = 'div#chapters div.tab-pane.container h3.text-truncate a.text-dark';
@@ -73,15 +73,15 @@ const reqAddInfos = async (arrayOfMangas) => {
 /* Creating server */
 let server = http.createServer(async (request, response) => {
 
-  response.setHeader('Access-Control-Allow-Origin', 'https://damien-auversack.github.io');
+  response.setHeader('Access-Control-Allow-Origin', '*');
   // response.setHeader("Access-Control-Allow-Headers", "Content-Type");
   response.writeHead(200, { "Content-Type": "text/plain" });
 
   arrayOfMangas=[];
 
-  // const urlObjects = url.parse(request.url, true).query;
-  let allMangas = true;
-  
+  const urlObjects = url.parse(request.url, true).query || "";
+  let allMangas = (urlObjects.isAllMangas=='true');
+  console.log("url value : "+allMangas);
   
   const scrapResult = await scrap(allMangas);
   
